@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\PosController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\CustomerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -95,6 +96,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/cart-update/{id}','CartUpdate')->middleware('permission:pos.menu');
         Route::get('/cart-remove/{rowId}','CartRemove')->middleware('permission:pos.menu');
         Route::post('/create-invoice','CreateInvoice')->middleware('permission:pos.menu');
+        Route::post('/print-invoice','PrintInvoice');
     
     });
 
@@ -108,6 +110,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/stock','StockManage')->name('stock.manage');
         Route::get('/order/complete/{id}','OrderComplete')->name('order.complete');
         Route::get('/order/invoice-download/{order_id}','OrderInvoice');
+        Route::post('/clear-invoice','ClearInvoice');
+        Route::get('/complete/details/{order_id}','CompleteDetails')->name('complete.details');
+        Route::get('/pending/edit/{id}','PendingEdit')->name('pending.edit');
+
     });
 
     /// Permission All Route 
@@ -150,6 +156,17 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/admin/{id}','EditAdmin')->name('edit.admin')->middleware('permission:all.role.permission.menu');
         Route::post('/update/admin','UpdateAdmin')->name('admin.update')->middleware('permission:all.role.permission.menu');
         Route::get('/delete/admin/{id}','DeleteAdmin')->name('delete.admin')->middleware('permission:all.role.permission.menu');
+        
+    });
+
+    /// Admin User All Route 
+    Route::controller(CustomerController::class)->group(function(){
+        Route::get('/all/customer','AllCustomer')->name('all.customer');
+        Route::get('/add/customer','AddCustomer')->name('add.customer');
+        Route::post('/store/customer','StoreCustomer')->name('customer.store');
+        Route::get('/edit/customer/{id}','EditCustomer')->name('edit.customer');
+        Route::post('/update/customer','UpdateCustomer')->name('customer.update');
+        Route::get('/delete/customer/{id}','DeleteCustomer')->name('delete.customer');
         
     });
 });

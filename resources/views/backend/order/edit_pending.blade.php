@@ -34,11 +34,12 @@
                                 <tbody>
                                     @foreach($allcart as $cart)
                                     <tr class="table-light">
-                                        
+                                        <input type="hidden" name="id" value="{{ $cart->id }}">
                                         <td>{{ $cart->name }}</td>
                                         <td>
                                         <form method="post" action="{{ url('/cart-update/'.$cart->rowId) }}">
                                         @csrf
+                                        
                                         <input type="number" name="qty" value="{{ $cart->qty }}" style="width:40px;" min="1">
                                         <button type="submit" class="btn btn-sm btn-success" style="margin-top:-2px ;"> <i class="fas fa-check"></i> </button> 
                                         </form>
@@ -117,6 +118,7 @@
                     </div>
                 </div>
             </div> <!-- end col -->
+
             <div class="col-xl-6">
                 <div class="card">
                     <div class="card-body">
@@ -184,8 +186,8 @@
                                 <select name="payment_status" class="form-select" id="example-select">
                                     <option selected disabled >Select Payment </option>
                                     <option value="HandCash">HandCash</option>
-                                    <option value="ABA">ABA</option>
-                                    <option value="ACLEDA ">ACLEDA </option>
+                                    <option value="Cheque">Cheque</option>
+                                    <option value="Due">Due</option>
                                 </select>
                             </div>
                             <div class="mb-3">

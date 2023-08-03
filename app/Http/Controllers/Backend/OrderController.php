@@ -66,6 +66,13 @@ class OrderController extends Controller
 
     }
 
+    public function ClearInvoice(){
+        
+        Cart::destroy();
+
+        return redirect()->route('pos');
+    }
+
     public function PendingOrder(){
         
         $orders = Order::where('order_status','pending')->get();
@@ -111,7 +118,7 @@ class OrderController extends Controller
     }
 
     public function OrderComplete($id){
-       
+
         Order::findOrFail($id)->update(['order_status' => 'complete']);
         $notification = array(
             'message' => 'Order Done Successfully',
@@ -134,4 +141,19 @@ class OrderController extends Controller
         return $pdf->download('invoice.pdf');
         
     }
+
+    public function CompleteDetails($order_id){
+
+        $order = Order::where('id', $order_id)->first();
+        $orderItem = Orderdetails::with('product')->where('order_id', $order_id)->orderBy('id','DESC')->get();
+
+        return view('backend.order.complete_detail', compact('order', 'orderItem'));
+    }
+
+    public function PendingEdit($id){
+
+        $cart = Cart::findOrFail($id);
+        return view ('backend.order.edit_pending', compact('cart'));
+    }
+
 }

@@ -26,7 +26,7 @@
                             @endif
                             <li class="menu-title">Pages</li>
                             @if(Auth::user()->can('all.role.permission.menu'))
-                            <li>
+                            <!-- <li>
                                 <a href="#permission" class="has-arrow waves-effect">
                                     <i class="ri-account-circle-line"></i>
                                     <span>Roles And Permission</span>
@@ -37,8 +37,7 @@
                                     <li><a href="{{ route('add.roles.permission') }}">Roles in Permission</a></li>
                                     <li><a href="{{ route('all.roles.permission') }}">All Roles in Permission</a></li>
                                 </ul>
-                            </li>
-                           
+                            </li> -->
                             <li>
                                 <a href="#admin" class="has-arrow waves-effect">
                                     <i class="ri-account-circle-line"></i>
@@ -46,11 +45,11 @@
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false" id="admin">
                                     <li><a href="{{ route('all.admin') }}">All Admin</a></li>
-                                    
+                                    <li><a href="{{ route('all.roles.permission') }}">All Roles in Permission</a></li>
                                 </ul>
                             </li>
                             @endif
-                            @if(Auth::user()->can('employee.menu'))
+                            <!-- @if(Auth::user()->can('employee.menu'))
                             <li>
                                 <a href="#permission" class="has-arrow waves-effect">
                                     <i class="ri-account-circle-line"></i>
@@ -65,7 +64,7 @@
                                     @endif
                                 </ul>
                             </li>
-                            @endif
+                            @endif -->
                             @if(Auth::user()->can('category.menu'))
                             <li>
                                 <a href="#category" class="has-arrow waves-effect">
@@ -111,6 +110,16 @@
                                 </ul>
                             </li>
                             @endif
+                            <li>
+                                <a href="#order" class="has-arrow waves-effect">
+                                    <i class="ri-account-circle-line"></i>
+                                    <span>Customer</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false" id="order">
+                                    <li><a href="{{ route('all.customer') }}">All Customer</a></li>
+                                    <li><a href="{{ route('add.customer') }}">Add Customer</a></li>
+                                </ul>
+                            </li>
                             @if(Auth::user()->can('stock.menu'))
                             <li>
                                 <a href="#stock" class="has-arrow waves-effect">

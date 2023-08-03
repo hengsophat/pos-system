@@ -25,7 +25,6 @@ class PosController extends Controller
             'weight' => 20, 
             'options' => ['size' => 'large']]);
 
-
          $notification = array(
             'message' => 'Product Added Successfully',
             'alert-type' => 'success'
@@ -74,5 +73,11 @@ class PosController extends Controller
 
     }
 
+    public function PrintInvoice(Request $request){
+        
+        $contents = Cart::content();
+        return view('backend.invoice.print_invoice', compact('contents'));
+
+    }
 
 }

@@ -42,6 +42,7 @@
                                                     <td>{{ $item->pay }}</td>
                                                     <td><span class="badge bg-danger">{{ $item->order_status }}</span></td>
                                                     <td><a href="{{ route('order.details', $item->id) }}" class="btn btn-sm btn-primary waves-effect waves-light"> Details </a>
+                                                        <a href="{{ route('pending.edit', $item->id) }}" class="btn btn-sm btn-primary waves-effect waves-light"> Edit </a>
                                                         <a href="{{ route('order.complete', $item->id) }}" class="btn btn-sm btn-primary waves-effect waves-light"> Complete </a>
                                                     </td>
                                                 </tr>
